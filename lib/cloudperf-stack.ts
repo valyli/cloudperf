@@ -81,7 +81,7 @@ export class CloudperfStack extends cdk.Stack {
 
     // 创建 Aurora Serverless V2 集群
     const db = new rds.DatabaseCluster(this, 'db-', {
-      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_3_07_1 }),
+      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_3_04_0 }),
       serverlessV2MinCapacity: 0.5,
       serverlessV2MaxCapacity: 128,
       writer: rds.ClusterInstance.serverlessV2('writer'),
@@ -171,8 +171,8 @@ export class CloudperfStack extends cdk.Stack {
       role: lambdaRoleAdmin,
       timeout: cdk.Duration.minutes(15),
       layers: [pythonLayer, dataLayer],
-      memorySize: 4096,
-      ephemeralStorageSize: cdk.Size.gibibytes(8),
+      memorySize: 10240, // 增加到最大10GB
+      ephemeralStorageSize: cdk.Size.gibibytes(10), // 增加到最大10GB
       environment: environments,
       securityGroups: [sg],
       architecture: lambda.Architecture.ARM_64,

@@ -1,0 +1,1 @@
+{"status": 200, "msg": [{"sql": "SELECT COUNT(*) as recent_1h, (SELECT COUNT(*) FROM statistics WHERE update_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)) as recent_10m FROM statistics WHERE update_time > DATE_SUB(NOW(), INTERVAL 1 HOUR)", "type": "query", "columns": "recent_1h,recent_10m", "rows": ["560,233"]}]}
